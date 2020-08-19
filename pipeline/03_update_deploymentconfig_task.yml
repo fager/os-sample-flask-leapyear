@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: update-deploymentconfig
+spec:
+  resources:
+    inputs:
+      - {type: image, name: image}
+  params:
+    - name: deploymentconfig
+      description: The name of the deploymentconfig patch the image
+      type: string
+  steps:
+    - name: patch
+      image: quay.io/openshift/origin-cli:latest
+      command: ["/bin/bash", "-c"]
+      args:
+        - |-
+          oc patch deploymentconfig $(inputs.params.deploymentconfig) --patch='{"spec":{"template":{"spec":{
+            "containers":[{
+              "name": "$(inputs.params.deploymentconfig)",
+              "image":"$(inputs.resources.image.url)"
+            }]
+          }}}}'
+
