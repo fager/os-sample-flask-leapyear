@@ -1,26 +1,26 @@
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
-  name: os-sample-flask-leapyear
+  name: leapyear-api
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
-    app: os-sample-flask-leapyear
-    deploymentconfig: os-sample-flask-leapyear
+    app: leapyear-api
+    deploymentconfig: leapyear-api
   strategy:
     type: Rolling
   template:
     metadata:
       labels:
-        app: os-sample-flask-leapyear
-        deploymentconfig: os-sample-flask-leapyear
+        app: leapyear-api
+        deploymentconfig: leapyear-api
     spec:
       containers:
 #      - image: image-registry.openshift-image-registry.svc:5000/fae-pipeline/os-sample-flask-leapyear:latest
       - image: os-sample-flask-leapyear:latest
         imagePullPolicy: Always
-        name: os-sample-flask-leapyear
+        name: leapyear-api
         ports:
         - containerPort: 8080
           protocol: TCP
