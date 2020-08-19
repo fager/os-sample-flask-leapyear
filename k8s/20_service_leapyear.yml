@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: os-sample-flask-leapyear
+  name: leapyear-api
 spec:
   ports:
   - name: 8080-tcp
@@ -9,7 +9,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: os-sample-flask-leapyear
-    deploymentconfig: os-sample-flask-leapyear
+    app: leapyear-api
+    deploymentconfig: leapyear-api
   sessionAffinity: None
   type: ClusterIP
