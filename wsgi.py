@@ -9,6 +9,10 @@ application = Flask(__name__)
 def hello():
     return "Hello World!"
 
+@application.route("/healthz")
+def healthz():
+    return "OK"
+
 @application.route("/leapyear/<int:i_year>")
 def leapyear( i_year ):
     ret_leap = calendar.isleap(i_year)
