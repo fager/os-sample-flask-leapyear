@@ -7,7 +7,7 @@ application = Flask(__name__)
 
 @application.route("/")
 def hello():
-    return "Hello World!"
+    return "API: /leapyear/<int>"
 
 @application.route("/healthz")
 def healthz():
